@@ -13,6 +13,11 @@ class _MainPageState extends State<MainPage> {
   int counter = 0;
   bool control = false;
 
+  Future<int> sum(int num1, int num2) async {
+    int result = num1 + num2;
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +81,20 @@ class _MainPageState extends State<MainPage> {
                 });
               },
               child: const Text('Durum 2 (False)')),
+
+          FutureBuilder<int>(
+            future: sum(10, 20),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Text('Hata oluştu');
+              }
+              if (snapshot.hasData) {
+                return Text('Sonuç ${snapshot.data}');
+              } else {
+                return const Text('Sonuç yok');
+              }
+            },
+          )
         ]),
       ),
     );
