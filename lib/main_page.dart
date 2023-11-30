@@ -11,6 +11,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int counter = 0;
+  bool control = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,8 @@ class _MainPageState extends State<MainPage> {
         title: const Text('Ana Sayfa'),
       ),
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text('Sayaç $counter'),
           ElevatedButton(
               onPressed: () {
@@ -33,11 +35,47 @@ class _MainPageState extends State<MainPage> {
                 var people =
                     People(name: 'Ozge', age: 33, tall: 1.62, single: false);
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PlayScreen(people: people)));
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PlayScreen(people: people)))
+                    .then((value) {
+                  //Anasayfaya geçiş yapıldığını anladığımız yer burada thenden sonra istenilen kodlar yazılabilir.
+                  print('Anasayfaya geçiş yapıldı');
+                });
               },
-              child: const Text('Başla'))
+              child: const Text('Başla')),
+          Visibility(visible: control, child: const Text('Merhaba')),
+          Text(
+            control ? 'Merhaba' : 'Güle Güle',
+            style: TextStyle(color: control ? Colors.blue : Colors.red),
+          ),
+          // ((){}()) bu parantezlerin arasına dart kodu yazabiliyoruz.
+          (() {
+            if (control) {
+              return const Text(
+                'Hello',
+                style: TextStyle(color: Colors.blue),
+              );
+            } else {
+              return const Text('BYE BYE',
+                  style: TextStyle(color: Colors.orange));
+            }
+          }()),
+          const Text('Merhaba'),
+          ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  control = true;
+                });
+              },
+              child: const Text('Durum 1 (True)')),
+          ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  control = false;
+                });
+              },
+              child: const Text('Durum 2 (False)')),
         ]),
       ),
     );
