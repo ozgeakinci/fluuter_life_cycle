@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_life_cycle_project/people.dart';
 import 'package:flutter_life_cycle_project/play_screen.dart';
 
 class MainPage extends StatefulWidget {
@@ -29,11 +30,12 @@ class _MainPageState extends State<MainPage> {
               child: const Text('Tıkla')),
           ElevatedButton(
               onPressed: () {
+                var people =
+                    People(name: 'Ozge', age: 33, tall: 1.62, single: false);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => PlayScreen(
-                            age: 33, name: 'Ozge', tall: 1.62, single: false)));
+                        builder: (context) => PlayScreen(people: people)));
               },
               child: const Text('Başla'))
         ]),

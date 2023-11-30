@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_life_cycle_project/people.dart';
 import 'package:flutter_life_cycle_project/result_screen.dart';
 
 class PlayScreen extends StatefulWidget {
-  PlayScreen(
-      {required this.age,
-      required this.name,
-      required this.tall,
-      required this.single,
-      Key? key})
-      : super(key: key);
+  PlayScreen({required this.people, Key? key}) : super(key: key);
 
-  String name;
-  int age;
-  double tall;
-  bool single;
+  People people;
 
   @override
   _PlayScreenState createState() => _PlayScreenState();
@@ -29,7 +21,7 @@ class _PlayScreenState extends State<PlayScreen> {
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
-              "${widget.name} - ${widget.age} - ${widget.tall} - ${widget.single} "),
+              "${widget.people.name} - ${widget.people.age} - ${widget.people.tall} - ${widget.people.single} "),
           ElevatedButton(
               onPressed: () {
                 //push direkt o sayfaya yönlendirirken pushreplacement aradaki sayfayı kaldırır. Sayfayı göstermeyip direkt olarak anasayfaya dönmek istersek bu şekilde ilerleyebiliriz.
