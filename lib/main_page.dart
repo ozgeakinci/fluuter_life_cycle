@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_life_cycle_project/play_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -26,7 +27,15 @@ class _MainPageState extends State<MainPage> {
                 });
               },
               child: const Text('Tıkla')),
-          ElevatedButton(onPressed: () {}, child: const Text('Başla'))
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PlayScreen(
+                            age: 33, name: 'Ozge', tall: 1.62, single: false)));
+              },
+              child: const Text('Başla'))
         ]),
       ),
     );

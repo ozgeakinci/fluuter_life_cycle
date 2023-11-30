@@ -16,9 +16,16 @@ class _ResultScreenState extends State<ResultScreen> {
       ),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          ElevatedButton(onPressed: () {}, child: const Text(' Geri Dön')),
           ElevatedButton(
-              onPressed: () {}, child: const Text(' Anasayfaya Geri Dön')),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(' Geri Dön')),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+              child: const Text(' Anasayfaya Geri Dön')),
         ]),
       ),
     );
